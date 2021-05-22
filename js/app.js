@@ -80,14 +80,24 @@ function activeSection() {
 
 // Scroll to anchor ID using scrollTO event
 function scrollToSection() {
-    // The for each loops over the sections list
-    sections.forEach(function (section) {  
 
+    // Variable to hold all the list items with the class active
+    const activeLinks = document.getElementsByClassName("active");
+    
         // Adding an event listener in the case of clicking in the navigation bar
-        navBar.addEventListener('click', function (section) {
-            const targetSection = document.getElementById(section.target.getAttribute('data-id')) // Gets the id of the section that it's link has been clicked
-            targetSection.scrollIntoView({ behavior: "smooth" }) // Method scrolls to the section that it's link has been clicked
-        });
+        navBar.addEventListener('click', function (e) {
+            // The for each loops over the sections list
+            sections.forEach(function (section) { 
+                const targetSection = document.getElementById(e.target.getAttribute('data-id')) // Gets the id of the section that it's link has been clicked
+                targetSection.scrollIntoView({ behavior: "smooth" }) // Method scrolls to the section that it's link has been clicked 
+        })
+        
+        // Checking if there is more than 1 item have the class name active, it will replace the class name of the previous clicked link to empty
+        if(activeLinks.length > 0){
+            activeLinks[0].className = activeLinks[0].className.replace(" active", "");
+        }
+        // Add  class active to class name of the current item
+        e.target.className += " active";
     })
 }
 
@@ -107,3 +117,4 @@ scrollToSection();
 
 // Set sections as active
 activeSection();
+
