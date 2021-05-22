@@ -67,7 +67,8 @@ function activeSection() {
                If it's in the view port it will add a class to the class list of current section to edit it's style, 
                else it will remove this class from the class list. 
             */
-            if ((position.top >= 0 && position.left >= 0)) {
+            if ((position.top >= 0 && position.left >= 0 && position.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            position.right <= (window.innerWidth || document.documentElement.clientWidth))) {
                 section.classList.add("your-active-class");
             } else {
                 section.classList.remove("your-active-class");
@@ -80,7 +81,7 @@ function activeSection() {
 // Scroll to anchor ID using scrollTO event
 function scrollToSection() {
     // The for each loops over the sections list
-    sections.forEach(function (section) {
+    sections.forEach(function (section) {  
 
         // Adding an event listener in the case of clicking in the navigation bar
         navBar.addEventListener('click', function (section) {
