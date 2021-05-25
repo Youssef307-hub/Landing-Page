@@ -67,8 +67,7 @@ function activeSection() {
                If it's in the view port it will add a class to the class list of current section to edit it's style, 
                else it will remove this class from the class list. 
             */
-            if ((position.top >= 0 && position.left >= 0 && position.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            position.right <= (window.innerWidth || document.documentElement.clientWidth))) {
+            if ((position.top >= 0 && position.top <= 300)) {
                 section.classList.add("your-active-class");
             } else {
                 section.classList.remove("your-active-class");
@@ -94,10 +93,10 @@ function scrollToSection() {
         
         // Checking if there is more than 1 item have the class name active, it will replace the class name of the previous clicked link to empty
         if(activeLinks.length > 0){
-            activeLinks[0].className = activeLinks[0].className.replace(" active", "");
+            activeLinks[0].classList.remove('active');
         }
         // Add  class active to class name of the current item
-        e.target.className += " active";
+        e.target.classList.add('active');
     })
 }
 
